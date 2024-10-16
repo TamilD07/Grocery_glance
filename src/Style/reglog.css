@@ -1,0 +1,111 @@
+ /* Style/reglog.css */
+
+body {
+  font-family: Arial, sans-serif; /* Set a nice font for the body */
+  margin: 0;
+  padding: 0;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7); /* Dark overlay for focus */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it is above other elements */
+}
+
+.popup-content {
+  background: rgba(255, 255, 255, 0.1); /* Transparent white background */
+  border-radius: 15px;
+  width: 400px; /* Set a fixed width for the popup */
+  padding: 20px;
+  backdrop-filter: blur(10px); /* Blur effect for glassmorphism */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  position: relative; /* Position for the close button */
+  color: white; /* Text color for improved visibility on a glass background */
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #fff; /* Close button color */
+}
+
+h2 {
+  margin: 0 0 15px 0; /* Margin for heading */
+  font-size: 24px; /* Font size for headings */
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px; /* Margin below labels */
+  font-weight: bold; /* Make labels bold */
+  color: white; /* Label color */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%; /* Full width for inputs */
+  padding: 10px; /* Padding for inputs */
+  margin-bottom: 15px; /* Space below inputs */
+  border: none; /* Remove border */
+  border-radius: 4px; /* Rounded corners */
+  box-sizing: border-box; /* Include padding and border in element's total width */
+  font-size: 16px; /* Font size for inputs */
+  background: rgba(255, 255, 255, 0.2); /* Slightly transparent input background */
+  color: white; /* Input text color */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border: none; /* No border on focus */
+  outline: none; /* Remove outline */
+  background: rgba(255, 255, 255, 0.3); /* Change background on focus */
+}
+
+.rgbtn, .lbtn {
+  text-align: right; /* Align buttons to the right */
+}
+
+button {
+  background-color: rgba(0, 123, 255, 0.8); /* Button color with transparency */
+  color: white; /* Text color for buttons */
+  border: none; /* Remove border */
+  padding: 10px 15px; /* Padding for buttons */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Font size for buttons */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+button:hover {
+  background-color: rgba(0, 123, 255, 1); /* Solid button color on hover */
+}
+
+.toggle-form {
+  text-align: center; /* Center align toggle text */
+  margin-top: 10px; /* Space above toggle text */
+}
+
+.toggle-form span {
+  color: #007bff; /* Color for the toggle link */
+  cursor: pointer; /* Pointer cursor on hover */
+  text-decoration: underline; /* Underline to indicate a link */
+}
+
+.toggle-form span:hover {
+  color: #0056b3; /* Darker color on hover */
+}

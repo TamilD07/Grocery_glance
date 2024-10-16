@@ -1,8 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import "../Style/navigation.css";
+import Login from "../Components/registration_&_login";
 
 function Navigation() {
   const [location, setLocation] = useState("Fetching location...");
+  const [isPopupVisible, setPopupVisible] = useState(false);
+  const openPopup = () => {
+    setPopupVisible(true);
+  };
+
+  // Function to handle closing the popup
+  const closePopup = () => {
+    setPopupVisible(false);
+  };
 
   useEffect(() => {
     // Geolocation API to get the user's current position
@@ -21,15 +31,16 @@ function Navigation() {
       .then(response => response.json())
       .then(data => {
         if (data && data.address) {
-          const { road, suburb, neighbourhood, village, town, city_district, city, state, postcode, country } = data.address;
+          const { road, neighbourhood, village, town, state_district, city, state, postcode, country } = data.address;
           
           // Check for all possible address fields that could represent the nagar/town/city names.
           const placeName = road || "Unnamed Road";
-          const area = suburb || neighbourhood || village || town || city_district || "Unknown Area";
+          const area =  neighbourhood || village || town ||  "Unknown Area";
           const cityName = city || getCityByPincode(postcode) || "Unknown City";  // Use pincode to find city
+          const district =  state_district ;
           const stateName = state || "Unknown State";
           const countryName = country || "Unknown Country";
-          const fullLocation = `${placeName}, ${area}, ${cityName}, ${stateName}, ${countryName}`;
+          const fullLocation = `${placeName}, ${area}, ${cityName},${district}, ${stateName}, ${countryName}`;
           setLocation(fullLocation);
         } else {
           setLocation("Location not found.");
@@ -97,10 +108,11 @@ function Navigation() {
 
       {/* Dropdown Nearby Shops Button */}
       <button className="dropdown-btn">Nearby Shops</button>
-      <button className="login-btn">Login</button>
+      <button className="login-btn" onClick={openPopup}>Login</button>
 
       {/* Google Translate Language Dropdown */}
       <div id="google_translate_element" className="translate-dropdown"></div>
+      {isPopupVisible && <Login onClose={closePopup} />} {/* Render AuthPopup if visible */}
     </div>
   );
 }

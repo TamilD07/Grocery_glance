@@ -45,6 +45,11 @@
 
 .location {
   margin-right: 20px;
+  max-width: 10vw;
+  max-height: 10vw;
+  font-size: 0.7vw;
+  text-align:left;
+  word-spacing: 0.1vw;
 }
 
 .dropdown-btn, .login-btn {
