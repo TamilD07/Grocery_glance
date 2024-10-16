@@ -60,11 +60,12 @@ input[type="password"] {
   width: 100%; /* Full width for inputs */
   padding: 10px; /* Padding for inputs */
   margin-bottom: 15px; /* Space below inputs */
-  border: none; /* Remove border */
+  border:none;
+  border-bottom: solid 1px grey;
   border-radius: 4px; /* Rounded corners */
   box-sizing: border-box; /* Include padding and border in element's total width */
   font-size: 16px; /* Font size for inputs */
-  background: rgba(255, 255, 255, 0.2); /* Slightly transparent input background */
+  background:transparent; /* Slightly transparent input background */
   color: white; /* Input text color */
 }
 
@@ -73,7 +74,9 @@ input[type="email"]:focus,
 input[type="password"]:focus {
   border: none; /* No border on focus */
   outline: none; /* Remove outline */
-  background: rgba(255, 255, 255, 0.3); /* Change background on focus */
+  border:none;
+  border-bottom: solid 1px grey;
+  background:transparent; /* Change background on focus */
 }
 
 .rgbtn, .lbtn {
