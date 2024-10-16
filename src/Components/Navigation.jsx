@@ -16,15 +16,21 @@ function Navigation() {
   // Reverse Geocoding using Nominatim API
   const reverseGeocode = (lat, lon) => {
     const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`;
-    
+
     fetch(url)
       .then(response => response.json())
       .then(data => {
         if (data && data.address) {
-          const { road, city, town, village, country } = data.address;
+          const { road, suburb, neighbourhood, village, town, city_district, city, state, postcode, country } = data.address;
+          
+          // Check for all possible address fields that could represent the nagar/town/city names.
           const placeName = road || "Unnamed Road";
-          const locationInfo = `${placeName}, ${city || town || village}, ${country}`;
-          setLocation(locationInfo);
+          const area = suburb || neighbourhood || village || town || city_district || "Unknown Area";
+          const cityName = city || getCityByPincode(postcode) || "Unknown City";  // Use pincode to find city
+          const stateName = state || "Unknown State";
+          const countryName = country || "Unknown Country";
+          const fullLocation = `${placeName}, ${area}, ${cityName}, ${stateName}, ${countryName}`;
+          setLocation(fullLocation);
         } else {
           setLocation("Location not found.");
         }
@@ -32,6 +38,20 @@ function Navigation() {
       .catch(() => {
         setLocation("Error retrieving location.");
       });
+  };
+
+  // Function to get city by pincode (example with static mapping)
+  const getCityByPincode = (pincode) => {
+    const pincodeToCityMap = {
+      "600001":"Chennai",
+      "600042": "Velachery",  // Example pin codes
+      "110001": "New Delhi",
+      "400001": "Mumbai",
+      "600017":"T.Nagar",
+      // Add more pincode mappings here
+    };
+
+    return pincodeToCityMap[pincode] || "Unknown City";
   };
 
   // Success callback for geolocation
