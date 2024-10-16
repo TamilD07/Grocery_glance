@@ -1,74 +1,154 @@
+ /* Styling for the navigation bar */
+ body{
+  margin:0;
+ }
 .nav-container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  background-color: #f8f8f8;
+  justify-content: space-between;
+  background-color: #1e1e2e;
+  padding: 15px 20px;
+  color: white;
+  margin:0;
 }
 
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
-
-ul li {
-  margin-right: 20px;
-}
-
-ul li a {
-  text-decoration: none;
-  color: #333;
-  font-size: 16px;
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ff5722;
 }
 
 .search-bar {
   display: flex;
   align-items: center;
-  flex-grow: 1;
   margin: 0 20px;
+  flex-grow: 1;
+  
 }
-
 .search-input {
-  width: 300px;
+  width: 50vw;
   padding: 8px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
+  border-radius: 20px;
+  margin-right: 10px;
+  text-align: center;
 }
 
 .search-btn {
-  padding: 8px 12px;
-  background-color: #4caf50;
-  color: white;
+  padding: 8px 16px;
+  background-color: #ff5722;
   border: none;
-  border-radius: 4px;
-  margin-left: 10px;
+  border-radius: 20px;
+  color: white;
   cursor: pointer;
 }
 
 .location {
-  font-size: 14px;
-  color: #555;
+  margin-right: 20px;
 }
 
 .dropdown-btn, .login-btn {
-  margin-left: 20px;
-  padding: 8px 12px;
-  font-size: 14px;
+  padding: 8px 16px;
+  background-color: #ff5722;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  margin-left: 10px;
   cursor: pointer;
 }
 
-.dropdown-btn {
-  background-color: #ffcc00;
-  border: none;
-  border-radius: 4px;
+/* Style for Google Translate dropdown */
+.translate-dropdown {
+  display: inline-block;
+  margin-left: 10px;
+  background-color: #333;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: white;
 }
 
-.login-btn {
-  background-color: #4caf50;
+.translate-dropdown select {
+  background-color: #ff5722;
   color: white;
   border: none;
-  border-radius: 4px;
+  padding: 4px 8px;
+  border-radius: 20px;
+  cursor: pointer;
 }
+
+.translate-dropdown .goog-te-gadget-simple {
+  border: none !important;
+  background-color: transparent !important;
+  color: rgb(79, 44, 44) !important;
+  font-size: 14px !important;
+  padding: 0 !important;
+}
+
+.translate-dropdown .goog-te-gadget-simple .goog-te-menu-value span {
+  color: rgb(55, 43, 43) !important;
+}
+.goog-te-gadget-icon{
+  border-radius: 20px;
+}
+.menu{
+    display:none;
+  }
+  @media (max-width:667px){
+    .nav-container {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      background-color:  #1e1e2e;; /* Add your background color */
+      border-bottom: 1px solid #ddd; /* Add a border for separation */
+      position: relative; /* Needed for dropdown positioning */
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    
+    .search-bar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px; /* Space below search bar */
+    }
+    
+    .search-input {
+      flex-grow: 1; /* Make input take remaining space */
+      padding: 8px;
+      border: 1px solid #ddd; /* Border for input */
+      border-radius: 4px;
+    }
+    
+    .search-btn, .menu, .dropdown-btn, .login-btn {
+      background-color: #ff5722; /* Button color */
+      color: white; /* Button text color */
+      border: none; /* No border */
+      padding: 8px 12px; /* Padding for buttons */
+      border-radius: 4px; /* Rounded corners */
+      cursor: pointer; /* Pointer on hover */
+      margin-left: 10px; /* Space between buttons */
+    }
+    
+    .dropdown-menu {
+      position: absolute; /* Position relative to the nav container */
+      top: 100%; /* Position below the nav */
+      right: 0; /* Align to the right */
+      background-color: white; /* Background color of dropdown */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+      z-index: 1000; /* Ensure it appears above other elements */
+      border-radius: 4px; /* Rounded corners */
+      margin-top: -50px; /* Space above the dropdown */
+      padding: 10px; /* Padding inside dropdown */
+    }
+    
+    .dropdown-menu button {
+      display: block; /* Stack buttons vertically */
+      width: 100%; /* Full width buttons */
+      margin: 5px 0; /* Space between options */
+    }
+    
+  }
+  

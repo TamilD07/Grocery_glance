@@ -21,17 +21,9 @@ function Navigation() {
       .then(response => response.json())
       .then(data => {
         if (data && data.address) {
-          // Deconstruct the available address fields
-          const { road, city, town, village, state, country } = data.address;
-
-          // Build the location string based on available values
-          const placeName = road ? road : "Unnamed Road";
-          const locality = city || town || village || "Unknown place";
-          const region = state || "Unknown state";
-          const countryName = country || "Unknown country";
-
-          // Create the location string and set it
-          const locationInfo = `${placeName}, ${locality}, ${region}, ${countryName}`;
+          const { road, city, town, village, country } = data.address;
+          const placeName = road || "Unnamed Road";
+          const locationInfo = `${placeName}, ${city || town || village}, ${country}`;
           setLocation(locationInfo);
         } else {
           setLocation("Location not found.");
@@ -67,10 +59,14 @@ function Navigation() {
 
   return (
     <div className="nav-container">
+      {/* Logo */}
+      <div className="logo">Grocery Glance</div>
+
       {/* Search bar */}
       <div className="search-bar">
         <input type="text" placeholder='Search for "cheese slices" or "chocolate box"' className="search-input" />
         <button className="search-btn">Search</button>
+        <button className='menu'>Menu</button>
       </div>
 
       {/* Location Display */}
@@ -82,6 +78,9 @@ function Navigation() {
       {/* Dropdown Nearby Shops Button */}
       <button className="dropdown-btn">Nearby Shops</button>
       <button className="login-btn">Login</button>
+
+      {/* Google Translate Language Dropdown */}
+      <div id="google_translate_element" className="translate-dropdown"></div>
     </div>
   );
 }
