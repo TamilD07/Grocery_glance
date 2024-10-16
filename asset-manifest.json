@@ -1,13 +1,19 @@
 {
   "files": {
-    "main.css": "/Grocery_glance/static/css/main.09541132.css",
-    "main.js": "/Grocery_glance/static/js/main.a991f9bd.js",
+    "main.css": "/Grocery_glance/static/css/main.af0323e7.css",
+    "main.js": "/Grocery_glance/static/js/main.c962b548.js",
+    "static/media/masala.jpeg": "/Grocery_glance/static/media/masala.6e25b6ceeeaa13a7c651.jpeg",
+    "static/media/grocery 2.jpeg": "/Grocery_glance/static/media/grocery 2.573552650a4149c2e817.jpeg",
+    "static/media/slick.svg": "/Grocery_glance/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/Grocery_glance/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/Grocery_glance/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/Grocery_glance/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/Grocery_glance/index.html",
-    "main.09541132.css.map": "/Grocery_glance/static/css/main.09541132.css.map",
-    "main.a991f9bd.js.map": "/Grocery_glance/static/js/main.a991f9bd.js.map"
+    "main.af0323e7.css.map": "/Grocery_glance/static/css/main.af0323e7.css.map",
+    "main.c962b548.js.map": "/Grocery_glance/static/js/main.c962b548.js.map"
   },
   "entrypoints": [
-    "static/css/main.09541132.css",
-    "static/js/main.a991f9bd.js"
+    "static/css/main.af0323e7.css",
+    "static/js/main.c962b548.js"
   ]
 }
