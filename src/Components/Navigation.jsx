@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import "../Style/navigation.css";
 import Login from "../Components/registration_&_login";
+import Cart from "../Components/cart"; // Import Cart component
 
 function Navigation() {
   const [location, setLocation] = useState("Fetching location...");
   const [isPopupVisible, setPopupVisible] = useState(false);
+  const [isCartVisible, setCartVisible] = useState(false); // State to show/hide cart popup
+  const [cartItems, setCartItems] = useState([]); // State to store cart items
+
   const openPopup = () => {
     setPopupVisible(true);
   };
 
-  // Function to handle closing the popup
   const closePopup = () => {
     setPopupVisible(false);
   };
 
+  const toggleCart = () => {
+    setCartVisible(!isCartVisible); // Toggle cart visibility
+  };
+
   useEffect(() => {
-    // Geolocation API to get the user's current position
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition, showError);
     } else {
@@ -23,21 +31,17 @@ function Navigation() {
     }
   }, []);
 
-  // Reverse Geocoding using Nominatim API
   const reverseGeocode = (lat, lon) => {
     const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`;
-
     fetch(url)
       .then(response => response.json())
       .then(data => {
         if (data && data.address) {
           const { road, neighbourhood, village, town, state_district, city, state, postcode, country } = data.address;
-          
-          // Check for all possible address fields that could represent the nagar/town/city names.
           const placeName = road || "Unnamed Road";
-          const area =  neighbourhood || village || town ||  "Unknown Area";
-          const cityName = city || getCityByPincode(postcode) || "Unknown City";  // Use pincode to find city
-          const district =  state_district ;
+          const area = neighbourhood || village || town || "Unknown Area";
+          const cityName = city || getCityByPincode(postcode) || "Unknown City";
+          const district = state_district;
           const stateName = state || "Unknown State";
           const countryName = country || "Unknown Country";
           const fullLocation = `${placeName}, ${area}, ${cityName},${district}, ${stateName}, ${countryName}`;
@@ -51,27 +55,22 @@ function Navigation() {
       });
   };
 
-  // Function to get city by pincode (example with static mapping)
   const getCityByPincode = (pincode) => {
     const pincodeToCityMap = {
-      "600001":"Chennai",
-      "600042": "Velachery",  // Example pin codes
+      "600001": "Chennai",
+      "600042": "Velachery",
       "110001": "New Delhi",
       "400001": "Mumbai",
-      "600017":"T.Nagar",
-      // Add more pincode mappings here
+      "600017": "T.Nagar",
     };
-
     return pincodeToCityMap[pincode] || "Unknown City";
   };
 
-  // Success callback for geolocation
   const showPosition = (position) => {
     const { latitude, longitude } = position.coords;
     reverseGeocode(latitude, longitude);
   };
 
-  // Error handling for geolocation
   const showError = (error) => {
     switch (error.code) {
       case error.PERMISSION_DENIED:
@@ -90,29 +89,30 @@ function Navigation() {
 
   return (
     <div className="nav-container">
-      {/* Logo */}
       <div className="logo">Grocery Glance</div>
 
-      {/* Search bar */}
       <div className="search-bar">
         <input type="text" placeholder='Search for "cheese slices" or "chocolate box"' className="search-input" />
         <button className="search-btn">Search</button>
         <button className='menu'>Menu</button>
       </div>
 
-      {/* Location Display */}
       <div className="location">
         Delivery <br />
         {location}
       </div>
 
-      {/* Dropdown Nearby Shops Button */}
-      <button className="dropdown-btn">Nearby Shops</button>
-      <button className="login-btn" onClick={openPopup}>Login</button>
+      <div className="nav-buttons">
+        <button className="login-btn" onClick={openPopup}>Login</button>
+        <button className="cart-btn" onClick={toggleCart}>
+          <FontAwesomeIcon icon={faShoppingCart} className="cart-icon" />
+          Cart
+        </button>
+      </div>
 
-      {/* Google Translate Language Dropdown */}
       <div id="google_translate_element" className="translate-dropdown"></div>
-      {isPopupVisible && <Login onClose={closePopup} />} {/* Render AuthPopup if visible */}
+      {isPopupVisible && <Login onClose={closePopup} />}
+      {isCartVisible && <Cart onClose={toggleCart} cartItems={cartItems} />} {/* Display Cart Popup */}
     </div>
   );
 }
